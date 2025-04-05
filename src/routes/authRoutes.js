@@ -93,4 +93,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// a simple get to show the server is running
+router.get("/", (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+});
+
 export default router;
