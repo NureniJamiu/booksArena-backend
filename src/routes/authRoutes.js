@@ -2,6 +2,7 @@ import express from "express";
 import User from "../models/User.js";
 import { generateAuthToken } from "../helpers/index.js";
 import bcrypt from "bcryptjs";
+import protectRoute from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -54,6 +55,24 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.put("/interests", protectRoute, async (req, res) => {
+  const { userId, interests } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.readingInterests = interests; // Update the reading interests
+    await user.save();
+
+    res.status(200).json({ message: "Interests updated successfully", user });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating interests", error });
   }
 });
 

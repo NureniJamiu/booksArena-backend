@@ -22,6 +22,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    readingInterests: [String], // Array of topics like "Technology", "Health"
+    partnerIds: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Partner",
+      },
+    ],
   },
   { timestamps: true }
 );
