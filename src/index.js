@@ -1,7 +1,10 @@
 import express from "express";
 import dotenv from "dotenv/config";
 import authRoutes from "./routes/authRoutes.js";
-import bookRoutes from "./routes/bookRoutes.js";
+// import bookRoutes from "./routes/bookRoutes.js";
+import articleRoutes from "./routes/articleRoutes.js";
+import partnerRoutes from "./routes/partnerRoutes.js";
+import streakRoutes from "./routes/streakRoutes.js";
 import connectDB from "./lib/db.js";
 import job from "./lib/cron.js";
 
@@ -12,10 +15,10 @@ job.start();
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.use("/api/books", bookRoutes);
-// app.use("/api/articles", articleRoutes);
-// app.use("/api/partners", partnerRoutes);
-// app.use("/api/streaks", streakRoutes);
+// app.use("/api/books", bookRoutes);
+app.use("/api/articles", articleRoutes);
+app.use("/api/partners", partnerRoutes);
+app.use("/api/streaks", streakRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
