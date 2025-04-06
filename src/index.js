@@ -1,7 +1,10 @@
 import express from "express";
 import dotenv from "dotenv/config";
 import authRoutes from "./routes/authRoutes.js";
-import bookRoutes from "./routes/bookRoutes.js";
+// import bookRoutes from "./routes/bookRoutes.js";
+import articleRoutes from "./routes/articleRoutes.js";
+import partnerRoutes from "./routes/partnerRoutes.js";
+import streakRoutes from "./routes/streakRoutes.js";
 import connectDB from "./lib/db.js";
 import job from "./lib/cron.js";
 
